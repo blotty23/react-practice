@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useReducer} from 'react';
 import './Hook.css';
 
 const products = [
@@ -27,13 +27,19 @@ const currencyOptions = {
 function getTotal(total) {
   return total.toLocaleString(undefined,currencyOptions)
 }
+function cartReducer(state,product) {
+  return [...state, product]
+}
+function totalReducer(state, price) {
+  return state + price
+}
 
 export default function Product() {
-  const [cart, setCart] = useState([]);
-  const [total, setTotal] = useState(0);
+  const [cart, setCart] = useReducer(cartReducer, []);
+  const [total, setTotal] = useReducer(totalReducer, 0);
 
   function add(product) {
-    setCart(current => [...current, product.name]);
+    setCart(product.name);
     setTotal(current => current + product.price);
   }
 
