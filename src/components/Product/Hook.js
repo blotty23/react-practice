@@ -14,7 +14,10 @@ export default function Product() {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
 
-  
+  function add() {
+    setCart(['ice cream']);
+    setTotal(5);
+  }
 
   return(
     <div className="wrapper">
@@ -25,7 +28,7 @@ export default function Product() {
 
       <div className="product"><span ro
       le="img" aria-label="ice cream">🍦</span></div>
-      <button>Add</button> <button>Remove</button>
+      <button onClick={add}>Add</button> <button>Remove</button>
     </div>
   )
 }
