@@ -28,7 +28,13 @@ export default function Product() {
 
       <div className="product"><span ro
       le="img" aria-label="ice cream">🍦</span></div>
-      <button onClick={add}>Add</button> <button>Remove</button>
+      <button onClick={add}>Add</button> 
+      <button onClick={() => {
+        setCart([]);
+        setTotal(0);
+      }}
+      >
+        Remove</button>
     </div>
   )
 }
