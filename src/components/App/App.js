@@ -1,7 +1,10 @@
 import './App.css';
+import React from 'react';
+import Product from '../Product/Product'
+
 
 function App() {
-  return <></>;
+  return <Product />;
 }
 
 export default App;
