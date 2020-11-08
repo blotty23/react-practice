@@ -30,8 +30,11 @@ function getTotal(total) {
 function cartReducer(state,product) {
   return [...state, product]
 }
-function totalReducer(state, price) {
-  return state + price
+function totalReducer(state, action) {
+  if(action.type === 'add') {
+    return state + action.price
+  }
+  return state - action.price
 }
 
 export default function Product() {
@@ -39,8 +42,9 @@ export default function Product() {
   const [total, setTotal] = useReducer(totalReducer, 0);
 
   function add(product) {
-    setCart(product.name);
-    setTotal(current => current + product.price);
+    const {name, price} = product
+    setCart(name);
+    setTotal({price, type: 'add'});
   }
 
   return(
