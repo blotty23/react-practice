@@ -1,6 +1,24 @@
 import React, { useState } from 'react';
 import './Hook.css';
 
+const products = [
+  {
+    emoji: '🍦',
+    name: 'ice cream',
+    price: 5
+  },
+  {
+    emoji: '🍩',
+    name: 'donuts',
+    price: 2.5,
+  },
+  {
+    emoji: '🍉',
+    name: 'watermelon',
+    price: 4
+  }
+];
+
 const currencyOptions = {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
@@ -25,16 +43,20 @@ export default function Product() {
         Shopping Cart: {cart.length} total items.
       </div>
       <div>Total: {getTotal(total)}</div>
-
-      <div className="product"><span ro
-      le="img" aria-label="ice cream">🍦</span></div>
-      <button onClick={add}>Add</button> 
-      <button onClick={() => {
-        setCart([]);
-        setTotal(0);
-      }}
-      >
-        Remove</button>
+      <div>
+        {products.map(product => (
+          <div key={product.name}>
+            <div className="product"><span role="img" aria-label={product.name}>{product.emoji}</span></div>
+            <button onClick={add}>Add</button> 
+            <button onClick={() => {
+              setCart([]);
+              setTotal(0);
+              }}
+              >
+              Remove</button>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
