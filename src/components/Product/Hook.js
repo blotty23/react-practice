@@ -24,10 +24,6 @@ const currencyOptions = {
   maximumFractionDigits: 2,
 }
 
-function getTotal(cart) {
-  const total = cart.reduce((totalCost, item) => totalCost + item.price, 0);
-  return total.toLocaleString(undefined,currencyOptions)
-}
 function cartReducer(state,action) {
   switch(action.type) {
     case 'add':
@@ -44,12 +40,12 @@ function cartReducer(state,action) {
       return state;
   }
 }
-function totalReducer(state, action) {
-  if(action.type === 'add') {
-    return state + action.price
-  }
-  return state - action.price
+
+function getTotal(cart) {
+  const total = cart.reduce((totalCost, item) => totalCost + item.price, 0);
+  return total.toLocaleString(undefined,currencyOptions)
 }
+
 
 export default function Product() {
   const [cart, setCart] = useReducer(cartReducer, []);
